@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+  <reflection-optimizer use="false" />
+  <session-factory>
+    <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
+    <property name="dialect">NHibernate.SybaseAdsDriver.SybaseAds10Dialect, NHibernate.SybaseAdsDriver</property>
+    <property name="connection.driver_class">NHibernate.SybaseAdsDriver.SybaseAdsClientDriver, NHibernate.SybaseAdsDriver</property>
+    <property name="adonet.batch_size">1</property>
+
+    <!-- DO NOT CHANGE THE DATASOURCE! MANY OF THE UNIT TESTS SETUP DATA THEN CLEAR THE TABLES WHEN COMPLETE 
+          IF YOU RUN THESE TESTS ON DATABASES WITH DATA IN THEM THEN YOU WILL LOSE DATA AND HAVE TO ASK STUART NICELY TO RECOVER
+                IT FROM BACKUP!!!!!!!!
+     -->
+    <property name="connection.connection_string">
+      <!-- SERIOUSLY DON'T CHANGE THIS, EVER!! -->
+      Data Source=\\st-luke:2001\UnitTest_WebData\UnitTest_WEBDD.ADD;User ID=unittester;Password=1234;CharType=ANSI;CommType=TCP_IP;Compression=Internet;DbfsUseNulls=False;Enlist=True;Initial Catalog=;LockMode=PROPRIETARY;ReadOnly=False;SecurityMode=IGNORERIGHTS;ServerType="AIS | REMOTE ";Shared=True;ShowDeleted=False;TableType=ADT;TrimTrailingSpaces=True;Pooling=True;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0
+    </property>
+
+    <property name="proxyfactory.factory_class">NHibernate.Bytecode.DefaultProxyFactoryFactory, NHibernate</property>
+    <property name="show_sql">true</property>
+    <property name="current_session_context_class">web</property>
+
+
+    <property name="cache.provider_class">NHibernate.Cache.HashtableCacheProvider</property>
+    <property name="cache.use_second_level_cache">false</property>
+    <property name="cache.use_query_cache">false</property>
+    <property name="cache.default_expiration">12000</property>
+  </session-factory>
+
+</hibernate-configuration>
